@@ -1,0 +1,137 @@
+// 1. Створити 5 констант типу String. Одні містять цифри, інші цифри і букви.
+// Знайти суму всіх констант: перевести іх до Int та виконати forced unwrapping i optional binding.
+
+var string1 = "8"
+var string2 = "5of"
+var string3 = "44"
+var string4 = "fo30"
+var string5 = "10"
+
+var sum = 0
+
+let smth = Int(string1)
+if smth != nil {
+    sum += smth!
+}
+
+if Int(string2) != nil {
+    sum += Int(string2)!
+}
+
+if Int(string3) != nil {
+    sum += Int(string3)!
+}
+
+if let number4 = Int(string4) {
+    sum += number4
+}
+
+if let number5 = Int(string5) {
+    sum += number5
+
+}
+
+//2
+
+let server : (statusCode: Int, message: String?, errorMessage: String?) = (250, "Goog job!", "Something goes ne tak :(")
+
+if  server.0 < 300 && server.0 > 200 {
+    print(server.1!)
+} else {
+    print(server.2!)
+}
+
+let server2 : (message: String?, errorMessage: String?) = (nil, "Something goes ne tak :(")
+
+if server2.0 != nil {
+    print(server2.0!)
+} else {
+    print(server2.1!)
+}
+
+let server3 : (message: String?, errorMessage: String?) = ("Goog job!", nil)
+
+if server3.1 != nil {
+    print(server3.1!)
+} else {
+    print("ERROR")
+}
+
+//3
+
+var student1 : (name: String?, car: String?, mark: Int?)
+var student2 : (name: String?, car: String?, mark: Int?)
+var student3 : (name: String?, car: String?, mark: Int?)
+var student4 : (name: String?, car: String?, mark: Int?)
+var student5 : (name: String?, car: String?, mark: Int?)
+
+student1.0 = "Yara"
+student2.0 = "Margo"
+student3.0 = "Lena"
+student4.0 = "Vika"
+student5.0 = "Katya"
+
+student1.1 = "KL 3181 YK"
+student3.1 = "VO 5153 SL"
+
+student1.2 = 8
+student2.2 = 10
+student4.2 = 7
+student5.2 = 0
+
+print("The first student is \(student1.0!).")
+if student1.1 != nil {
+    print("Yara has a car. It's numbers \(student1.1!).")
+} else {
+    print("Yara has no car.")
+}
+if student1.2 != nil {
+    print("Yara has mark \(student1.2!).")
+} else {
+    print("Yara wasn't at the lesson.")
+}
+    
+print("The second student is \(student2.0!).")
+if student2.1 != nil {
+    print("Margo has a car. It's numbers \(student2.1!).")
+} else {
+    print("Margo has no car")
+}
+if student2.2 != nil {
+    print("Margo has mark \(student2.2!).")
+} else {
+    print("Margo wasn't at the lesson.")
+}
+print("The third student is \(student3.0!).")
+if student3.1 != nil {
+    print("Lena has a car. It's numbers \(student3.1!).")
+} else {
+    print("Lena has no car")
+}
+if student3.2 != nil {
+    print("Lena has mark \(student3.2!).")
+} else {
+    print("Lena wasn't at the lesson.")
+}
+print("The forth student is \(student4.0!).")
+if student4.1 != nil {
+    print("Vika has a car. It's numbers \(student4.1!).")
+} else {
+    print("Vika has no car")
+}
+if student4.2 != nil {
+    print("Vika has mark \(student4.2!).")
+} else {
+    print("Vika wasn't at the lesson.")
+}
+print("The fifth student is \(student5.0!).")
+if student5.1 != nil {
+    print("Katya has a car. It's numbers \(student5.1!).")
+} else {
+    print("Katya has no car")
+}
+if student5.2 != nil {
+    print("Katya has mark \(student5.2!).")
+} else {
+    print("Katya wasn't at the lesson.")
+}
