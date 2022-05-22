@@ -1,0 +1,15 @@
+Tuple — тип даних, який групує інші.
+let a = (1, "Hello", true, 2.4)
+
+let b (number: Int, greeting: String, check: Bool, decimal: Double) = a
+
+b.0 = 1
+b.1 = "Hello"
+b.check = true
+b.decimal = 2.4
+Це називається decomposition — виймаєм окремі параметри у тюплах.
+
+Замість складових можна використовувати _
+print (b(_, _, check, _))
+
+Тюпли з однаковими параметрами можна порівнювати.
