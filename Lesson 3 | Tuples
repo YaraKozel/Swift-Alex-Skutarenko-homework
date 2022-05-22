@@ -1,0 +1,26 @@
+// 1. Створити тюпл з параметрами фізичної підготовки: макс. кількість віджимань, підтягувань і присідань.
+
+var maxYara = (pushups: 5, pullups: 0, squattings: 100)
+print(maxYara)
+
+// 2. Зробити три окремі виводи у консоль: деякі через індекс, деякі через параметр.
+
+print("Yara's max at sport:\n\(maxYara.pushups) push-ups\n\(maxYara.1) pull-ups\n\(maxYara.2) squattings")
+
+// 3. Створити такий же тюпл для іншої людини.
+// Поміняти значення тюплів між собою (використала проміжкову змінну).
+
+var maxVitya = (pushups: 20, pullups: 10, squattings: 50)
+
+var maxRandom = maxYara
+maxYara = maxVitya
+maxVitya = maxRandom
+
+// 4. Створити тюпл з такими ж параметрами, але значення — різниця попередніх двох тюплів.
+// Вивести у консоль.
+
+var dpushups = maxYara.0 - maxVitya.0
+var dpullups = maxYara.1 - maxVitya.1
+var dsquattings = maxYara.2 - maxVitya.2
+var difference = (pushups: dpushups, pullups: dpullups, squattings: dsquattings)
+print(difference)
