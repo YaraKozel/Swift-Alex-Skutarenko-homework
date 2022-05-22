@@ -1,0 +1,14 @@
+_ нічого не міняє у записі 
+500000 = 500_000
+
+Int(_) - переводить значення у Int
+Double(_) - переводить значення у Double. 5.9 стане 5, а не 6.
+Float(_) - переводить значення у Float. 5.9 стане 5, а не 6.
+
+let number1 :Int = 5
+let number2 :Double = 6.0
+
+let numbers :Int = number1 + Int(number2)
+
+Якщо потрібно знайти суму Double у Int, то переводимо до Int суму, а не кожну окрему константу. Так, результат буде більш точним.
+let abc1 = Int(Double(a) + Double(b) + Double(c))
