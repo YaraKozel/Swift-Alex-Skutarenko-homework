@@ -1,0 +1,29 @@
+// 1. Вивести у консоль максимальне та мінімальне значення базових типів Int.
+
+print("The Int8.min   = \(Int8.min) and The Int8.max = \(Int8.max)")
+print("The UInt8.min  = \(UInt8.min) and The UInt8.max = \(UInt8.max)")
+print("The Int16.min  = \(Int16.min) and The Int16.max = \(Int16.max)")
+print("The UInt16.min = \(UInt16.min) and The UInt16.max = \(UInt16.max)")
+print("The Int32.min  = \(Int32.min) and The Int32.max = \(Int32.max)")
+print("The UInt32.min = \(UInt32.min) and The UInt32.max = \(UInt32.max)")
+print("The Int64.min  = \(Int64.min) and The Int64.max = \(Int64.max)")
+print("The UInt64.min = \(UInt64.min) and The UInt64.max = \(UInt64.max)")
+
+// 2. Створити 3 константи типу Int, Double i Float. 
+// Створити 3 константи із сумою цих трьох, кожна різного типу даних.
+
+let a = 10
+let b = 10.5
+let c :Float = 10.55
+
+let abc1 = Int(Double(a) + Double(b) + Double(c))
+let abc2 = Double(a) + b + Double(c)
+let abc3 = Float(a) + Float(b) + c
+
+// 3. Порівняти результат і вивести у консоль.
+
+if abc2 > Double(abc1) {
+    print("Swift is the best!")
+} else {
+    print("I should practice more")
+}
