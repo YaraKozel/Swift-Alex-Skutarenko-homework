@@ -1,8 +1,0 @@
-// Створити характеристики студента: імʼя, прізвище, зріст, вага, вік.
-//Вивести дані у консоль. Кожна характеристика має починатись з нового рядка.
-
-let studentName = "Yaryna Kozel"
-let studentAge = 22
-let studentWeight = 54
-let studentHeight = 169
-print("The student's name is \(studentName)\nThe student's age is \(studentAge)\nThe student's weight is \(studentWeight)\nAnd the student's height is \(studentHeight)")
