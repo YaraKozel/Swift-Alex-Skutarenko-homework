@@ -1,0 +1,7 @@
+Тип даних Character може містити лише 1 значенння.
+let a : Character = "x"
+Не додається із String.
+Щоб додати, використовуємо метод append()
+var str = "a"
+str.append(a) -> "ax"
+
