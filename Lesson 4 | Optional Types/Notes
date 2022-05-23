@@ -1,0 +1,30 @@
+nil — відсутність значення.
+
+Якщо ми підозрюємо, що обʼєкту нема — робимо тип даних optional: Int? String? Bool?
+
+Int i Int? різні дані, тому перед використанні опціональні типи треба "розгорнути".
+
+var apples :Int? = 5
+
+Forced unwrapping
+var a = apples! + 2
+
+Optional binding
+if var a = apples {
+a += 2
+} else {
+print ("apples are nil")
+
+Метод Int(_) повертає опціональний тип даних.
+
+let age = "60"
+ if Int(age) != nil {
+ let ageNumber = Int(age)!
+} — викликаємо forced unwrapping двічі.
+
+if let ageNumber = Int(age)! {
+ageNumber
+}
+
+Якщо у нас implicit unwrapping, ми не перевіряємо на nil.
+var number :Int! = 10
