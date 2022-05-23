@@ -1,5 +1,5 @@
 // 1. Створити 5 констант типу String. Одні містять цифри, інші цифри і букви.
-// Знайти суму всіх констант: перевести іх до Int та виконати forced unwrapping i optional binding.
+// Знайти суму всіх констант: перевести їх до Int та виконати forced unwrapping i optional binding.
 
 var string1 = "8"
 var string2 = "5of"
@@ -31,7 +31,9 @@ if let number5 = Int(string5) {
 
 }
 
-//2
+//2 З серверу ми отримаємо тюпл з параметрами: statusCode, message, errorMessage (число, строка і строка).
+//якщо statusCode 200–300, то виводимо message, в іншому випадку — errorMessage.
+//Зробити теж саме, але без Status code.
 
 let server : (statusCode: Int, message: String?, errorMessage: String?) = (250, "Goog job!", "Something goes ne tak :(")
 
@@ -57,7 +59,9 @@ if server3.1 != nil {
     print("ERROR")
 }
 
-//3
+//3 Створити 5 пустих тюплів з параметрами: імʼя, номер машини, оцінка за контрольну.
+// Кожному студенту встановити імʼя, деяким — номер машини, і деяким результат контрольної.
+// Вивести дані у консоль.
 
 var student1 : (name: String?, car: String?, mark: Int?)
 var student2 : (name: String?, car: String?, mark: Int?)
