@@ -1,0 +1,56 @@
+//1 Створити 5 констант та розгорнути їх за допомогою оператора ??
+//Суму вивести у консоль через інтерполяцію і конкатенацію.
+
+let number = "5"
+let number2 = "8f"
+let number3 = "13"
+let number4 = "90ok"
+let number5 = "6"
+
+let defaultNumber = 0
+
+var sum = 0
+
+let n = Int(number) ?? defaultNumber
+sum += n
+
+let n2 = Int(number2) ?? defaultNumber
+sum += n2
+
+let n3 = Int(number3) ?? defaultNumber
+sum += n3
+
+let n4 = Int(number4) ?? defaultNumber
+sum += n4
+
+let n5 = Int(number5) ?? defaultNumber
+sum += n5
+
+print("5 + nil + 13 + nil + 6 = \(sum)")
+
+print("5 + nil + 13 + nil + 6 = \(n + n2 + n3 + n4 + n5)")
+
+//2 Створити строки за допомогою Unicode.
+// Порахувати її довжину через Swift i OBJ-C.
+
+let fun = "\u{1F49D}\u{1F525}\u{1F618}\u{26F7}\u{1F489}"
+fun.count
+(fun as NSString).length
+NSString(string: fun).length
+
+//3 Створити алфавіт. 
+// задати константу певною літерою.
+// Знайти її індекс у строці.
+
+let alphabet = "abcdefghijklmnopqrstuvdxyz"
+
+let search : Character = "x"
+var index = 0
+
+for x in alphabet {
+    if x == search {
+        print("index = \(index + 1)")
+    
+    }
+    index += 1
+}
