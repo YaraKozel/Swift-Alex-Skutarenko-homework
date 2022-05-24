@@ -1,0 +1,31 @@
+var array = [String]() - пустий масив
+
+array.append — додає Char вкінець
+array.insert — додає елементи на певну позицію.
+
+Можна зробити масив так:
+let test = [Int](count: 10, reapated value: 100)
+test = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+
+var day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+for (index, value) in array.enumerated — працює, якщо два масиви мають однакову кількість значень.
+for (index, value) in day.enumerated() {
+    print("\(month[index]) — \(value).")
+}
+
+З двох масивів можна зробити тюпл:
+
+var tuples = [(String, Int)]()
+for i in 0..<day.count {
+    let yearcount = (monthes: month[i], days: day[i])
+    tuples.append(yearcount)
+    
+    Можна два масиви обʼєднати у папку:
+
+for (day, month) in zip (day, month) {
+    print ("\(month) has \(day) days.")
+}
+
+Масив можна зробити оберненим: var reversedYear = year.reversed()
