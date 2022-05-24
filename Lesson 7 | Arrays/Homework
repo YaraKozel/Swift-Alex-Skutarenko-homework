@@ -1,0 +1,102 @@
+//1 Створити масив з кількістю днів, що містить кожен місяць. І масив з назвами місяців.
+Використовуючи for in вивести: 
+кожен місяць з кількістю днів у ньому.
+те ж, але через масив тюплів.
+те ж, але дні у зворотньому порядку.
+
+var day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+print(day)
+
+let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+for (index, value) in day.enumerated() {
+    print("\(month[index]) — \(value).")
+}
+
+var tuples = [(String, Int)]()
+for i in 0..<day.count {
+    let yearcount = (monthes: month[i], days: day[i])
+    tuples.append(yearcount)
+}
+print(tuples)
+
+for (day, month) in zip (day, month) {
+    print ("\(month) has \(day) days.")
+}
+
+var year : [(day: Int, month: String)] = [(31, "January"), (28, "February"), (31, "March"), (30, "April"), (31, "May"), (30, "June"), (31, "July"), (31, "August"), (30, "September"), (31, "October"), (30, "November"), (31, "December") ]
+
+var reversedYear = year.reversed()
+for (i, b) in reversedYear {
+    print ("\(b) has \(i) days." )
+}
+
+// Порахувати кількість днів від 1 січня до дня мого народження.
+
+var birthdayMonth = "March"
+var birthdayDay = 31
+var sum = 0
+
+if month.contains(birthdayMonth) {
+    let ind = month.firstIndex(of: birthdayMonth)
+    day[(ind!)] = birthdayDay
+    let new = day[0...(ind!)]
+    
+    for i in new {
+        sum += i
+        }
+    print("From the 1.01 to my birthday date are \(sum) days.")
+}
+
+var birthdayDate = (month: 3, day: 31)
+var daysCount = 0
+
+for i in 0 ..< (birthdayDate.month - 1) {
+    daysCount += day[i]
+}
+daysCount += birthdayDate.day
+
+//2 Створити масив Optional Int і порахувати суму через:
+- optional binding
+- forced unwrapping
+- оператор ??
+
+var array : [Int?] = [5, nil, 8, nil, 13]
+var optionalBinding = 0
+
+for value in array {
+    if let value = value {
+        optionalBinding += value
+    }
+}
+
+optionalBinding
+
+var forcedUnwrapping = 0
+for i in array {
+    if i != nil {
+        forcedUnwrapping += i!
+    }
+}
+
+forcedUnwrapping
+
+var gentleUnwrapping = 0
+
+for i in array {
+    gentleUnwrapping += i ?? 0
+}
+
+gentleUnwrapping
+
+//3 Створити масив Characters і пустий масив String.
+Перенести алфавіт у зворотньому порядку у пустий масив String.
+
+let abc : [Character] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "d", "x", "y", "z"]
+
+var abcArray = [String]()
+
+for i in abc.reversed() {
+    abcArray.append(String(i))
+}
+print(abcArray)
