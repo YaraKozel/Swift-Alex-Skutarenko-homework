@@ -14,3 +14,37 @@ please your Majesty?" he asked.
 "Begin at the beginning," the King said gravely, "and go on
 till you come to the end; then stop."
 """
+
+Щоб поставити " всередині "" пишемо \"
+\n — переносить у начтупний рядок
+# — забираю дію special characters. 
+#"Line 1\nLine 2"# — надрукується з \n.
+#"Line 1\#nLine 2"# — надрукується з розбивкою на дві строки.
+
+let greeting = "Guten Tag!"
+greeting[greeting.startIndex]
+// G
+greeting[greeting.index(before: greeting.endIndex)]
+// !
+greeting[greeting.index(after: greeting.startIndex)]
+// u
+let index = greeting.index(greeting.startIndex, offsetBy: 7)
+greeting[index]
+// a
+
+var welcome = "hello"
+welcome.insert("!", at: welcome.endIndex)
+welcome now equals "hello!"
+
+welcome.insert(contentsOf: " there", at: welcome.index(before: welcome.endIndex))
+welcome now equals "hello there!"
+
+За такою ж аналогією працює remove.
+
+welcome.remove(at: welcome.index(before: welcome.endIndex))
+welcome now equals "hello there"
+
+let range = welcome.index(welcome.endIndex, offsetBy: -6)..<welcome.endIndex
+welcome.removeSubrange(range)
+welcome now equals "hello"
+
