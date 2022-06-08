@@ -1,0 +1,38 @@
+//1 Журнал студентів, де імʼя і прізвище ключ, а оцінка — значення.
+// Підвищити декому бали, когось видалити, нових студентів додати.
+// Дізнатись загальний бал та середній.
+
+var clas = [ "Yaryna Kozel" : 10, "Victor Shurapov" : 7, "Vika Paziuk" : 8, "Kate Nagliuk" : 5, "Mira Takriti" : 10 ]
+clas["Victor Shurapov"] = 9
+clas["Kate Nagliuk"] = 8
+
+clas["Yana Korzh"] = 7
+clas["Diana Vovk"] = 6
+
+clas["Kate Nagliuk"] = nil
+clas.removeValue(forKey: "Vika Paziuk")
+
+var totalSum = 0
+for value in clas.values {
+    totalSum += value
+}
+
+var avarageMark = totalSum / clas.count
+
+print("Total sum is \(totalSum), avarage sum is \(avarageMark).")
+
+//2 Ключ — назва місяця, значення — кількість днів.
+// Вивести у консоль через тюпл і перебираючи значення.
+
+let year = [ "January" : 30, "February" : 28, "March" : 31, "April" : 30, "May" : 31, "June" : 30, "July" : 31, "August" : 31, "September" : 30, "October" : 31, "November" : 30, "December" : 31]
+
+for (key, value) in year {
+    print("\(key) has \(value) days.")
+}
+
+for key in year.keys {
+    print("\(key) has \(year[key]!) days.")
+}
+
+//3 Дикшинарі, де ключ — адреса шахматної клітинки, а значення це Bool. Біла клітинка true, а чорна — false.
+// Вивести дикшинарі в консоль. Зробити все через вкладений цикл.
