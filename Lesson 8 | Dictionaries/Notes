@@ -1,0 +1,33 @@
+dictionary.count — рахує пари ключ : значення
+
+var dict = [ "машина" : "car"]
+щоб додати ще одне значення:
+dict["комп"] = "computer"
+
+якщо використати ключ, який вже є до нового значення — це міняє значення
+другий варіант: 
+dict.updateValue("mac" for key "комп")
+
+dict.keys.array — масив ключів
+dict.values.array — масив значень
+
+Створити String? або Int? чи інший тип з Dictionary
+let comp = dict["комп"] — буде let comp = computer, тип String?
+
+Забрати значення
+dict["машина"] = nil
+dict.removeValueForKey/removeAll
+
+dict = [:] — обнулити
+але після цього ми можемо додати лише попередній тип даних, наприклад String:String
+
+for key in dict.keys {
+print ("key = \(key), value = \(dict[key]!)"
+або
+for (key, value) in dict {
+print ("key = \(key), value = \(value)") — без unwrapping
+
+Dictionary використовуємо для масташбних масивів даних.
+
+
+
