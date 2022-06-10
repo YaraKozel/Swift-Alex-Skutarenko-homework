@@ -36,3 +36,21 @@ for key in year.keys {
 
 //3 Дикшинарі, де ключ — адреса шахматної клітинки, а значення це Bool. Біла клітинка true, а чорна — false.
 // Вивести дикшинарі в консоль. Зробити все через вкладений цикл.
+
+let arrayOfLetters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+let arrayOfNumbers = ["1", "2", "3", "4", "5", "6", "7", "8"]
+
+var chessDict = [String : Bool]()
+
+func test() {
+    for (indexOfLetter, letter) in arrayOfLetters.enumerated() {
+
+        for (indexOfNum, number) in arrayOfNumbers.enumerated() {
+            chessDict[letter + number] = (indexOfLetter % 2) != (indexOfNum % 2)
+            print("Cell code: \(letter + number)")
+            print("Cell color: \(chessDict[letter + number]!)")
+        }
+    }
+}
+
+print(test())
