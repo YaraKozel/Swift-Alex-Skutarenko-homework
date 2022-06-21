@@ -1,0 +1,111 @@
+//1 Створити рандомну строку. Використовуючи цикл і Switch порахувати: голосні, приголосні, цифри і знаки.
+
+var random = "qwertyuiop[]';lkjhgfdsazxcvbnm,465895gkwwjbjf/jbnvfdjkt845t0w"
+
+var vowel = 0
+var consonant = 0
+var number = 0
+var symbols = 0
+
+for char in random {
+    switch char {
+    case "a", "e", "i", "o", "u":
+        vowel += 1
+        
+    case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z":
+        consonant += 1
+        
+    case "1", "2", "3", "4", "5", "6", "7", "8", "9":
+        number += 1
+        
+    case "[", "]", ";", "'", ",", ".", "/", "\"" :
+        symbols += 1
+        
+    default: break
+        
+    }
+}
+
+print(vowel)
+print(consonant)
+print(number)
+print(symbols)
+
+//2 Switch, який приймає вік людини і віддає опис того періоду.
+
+var myAge = 22
+
+switch myAge {
+case 0...1:
+    print("You are a newborn.")
+    
+case 2...6:
+    print("You are a child.")
+    
+case 7...17:
+    print("You are a pupil.")
+    
+case 18...22:
+    print("You are a student.")
+    
+case 23...40:
+    print("You should better work to feed u and your family.")
+    
+case 41...65:
+    print("Where all the time goes?")
+    
+case 66...90:
+    print("You are a pensioner")
+    
+default:
+    print("I'm just a dead boy")
+}
+
+//3 Створити ПІБ. Якщо імʼя починається на А чи О — звертатися на імʼя. 
+Якщо По-батькові починається на Д чи В — звертатися на імʼя по-батькові.
+Якщо прізвище починається на Е чи З — звертатися на прізвище. 
+Дефолт — все разом.
+
+var myName = (name: "Yaryna", surname: "Kozel", fatherName: "Zoryanivna")
+
+switch myName {
+case _ where myName.name.hasPrefix("A") || myName.name.hasPrefix("O"):
+    print("Hello, \(myName.name)!")
+    
+case _ where myName.fatherName.hasPrefix("V") || myName.fatherName.hasPrefix("D") :
+    print("Hello, \(myName.name + myName.fatherName)!")
+    
+case _ where myName.surname.hasPrefix("E") || myName.surname.hasPrefix("Z") :
+    print("Hello, \(myName.surname)!")
+    
+default:
+    print("Hello, \(myName.surname) \(myName.name) \(myName.fatherName)!")
+}
+
+
+
+//4 Морський бій. Switch приймає координати і віддає статус.
+
+var x = [Int]()
+var y = [Int]()
+
+for i in 1...10 {
+    x.append(i)
+}
+
+for j in 1...10 {
+    y.append(j)
+}
+
+let point = (x: 2, y: 1)
+
+switch point {
+case (2, 1), (4, 5), (6, 7), (5, 10):
+    print("Hit and sunk!")
+    
+case (6,2), (7,2), (8,2), (9,2), (10, 4), (10, 5), (10,6), (7, 5), (8, 5), (1, 6), (1, 7), (1, 9), (2, 9), (8, 9), (9, 9), (10, 9):
+    print("Hit!")
+    
+default:
+    print("Miss!")
+}
