@@ -1,0 +1,73 @@
+Where — додає умову у cases.
+ 
+У Switch можна використовувати tuples.
+
+var tuple = (name, age)
+ 
+switch tuple {
+case (Älex", 60): print("Hi Alex 60")
+
+2 умови мають бути true.
+
+Якщо параметр неважливий, то ставимо _
+
+Binding у cases. Можна і для tuple.
+
+case (_, let number) where number >= 65 && number <= 70 :
+print("Hi old man!")
+
+Записати array з різними типами:
+let array: [Any] = [5, 5.4, Float(5.5)]
+Дізнаємось тип у array:
+
+switch array [2] {
+case _ as Int: print("Int")
+case _ as Double: print("Double")
+case _ as Float: print("Float")
+default: break
+}
+
+stride(from: to: by:)
+
+let minutes = 60
+let minuteInterval = 5
+
+for tickMark im stride(from: 0, to: minutes, by: minuteInterval)
+Якщо треба включно — from, through, by.
+
+У Switch 2 cases можуть мати одне value
+let character = "a"
+
+switch character {
+case "a", "A" : print("True")
+default: break
+}
+
+
+
+Control Transfer Statements
+
+Continue — tells a loop to stop what it's dooing and start again at the beginning of the next iteration through the loop.
+for i in 0..<20 {
+if i < 15
+continue
+}
+
+Break — stops the execution immediately.
+for i in 0..<20 {
+if i == 10
+break
+}
+
+Fallthrough — doesn't check the case conditions. It causes code execution to move directly to the next case or default.
+
+Labeled Statements — loops/conditions inside other ones to make them before the break/continue methods.
+Якщо у нас є вкладені цикли — використовуємо labels.
+
+mainLoop: for _ in 0...1000 {
+  littleLoop: for i ij 0..<20 {
+   if i == 10 {
+   break mainLoop
+   }
+ }
+ 
