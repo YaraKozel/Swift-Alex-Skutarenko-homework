@@ -1,0 +1,96 @@
+//1 Створити 2–3 короткі функції, що повертають строку з юнікодом. Створити один принт зі всіма функціями.
+
+func love() -> String {
+    return "\u{1F491}"
+}
+
+func star() -> String {
+    return "\u{1F320}"
+}
+
+func thought() -> String {
+    return "\u{1F914}"
+}
+
+//print("When you see a \(star()) falling, \(thought()) about wishing a \(love()).")
+
+//2 Функція приймає інт та стрінг (адресу клітинки) і повертає стрінг — біла вона чи чорна.
+
+func chessColor(letter: String, index: Int) -> String {
+    
+    let letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+    let indexes = [1, 2, 3, 4, 5, 6, 7, 8]
+    
+    if let letterIndex = letters.firstIndex(of: letter), let numberIndex = indexes.firstIndex(of: index) {
+        return (letterIndex + numberIndex) % 2 > 0 ? "white" : "black"
+    } else {
+        return "Error"
+    }
+}
+
+chessColor(letter: "a", index: 6)
+
+//print("The cell A5 is \(chessColor(letter: "a", index: 5)).")
+
+//3 Функція приймає послідовність і повертає її в оберненому вигляді.
+
+func reversedArray(inSequence array: Int...) -> [Int] {
+    var array2 = [Int]()
+    for i in stride(from: (array.count - 1), through: 0, by: -1) {
+        array2.append(array[i])
+    }
+    return array2
+}
+
+print("Count 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 in reverse! \nOkay! \(reversedArray(inSequence: 1, 2, 3, 4, 5, 6, 7, 8, 9))")
+
+//4 Функція приймає масив і повертає його у оберненому вигляді через inout.
+
+func reversedInOut(array: inout [Int]) {
+    array = array.reversed()
+}
+    
+var randomNumbers = [1, 2, 3, 4 ,5]
+reversedInOut(array: &randomNumbers)
+print(randomNumbers)
+
+//5 Функція, приймає стрінг і віддає іншу стрінг, де:
+голосні стали великі;
+всі приголосні стали маленькі;
+всі знаки замінили на пробіл;
+ві цифри записали буквами.
+
+var someString = "Ukrainian 2 IT specialists Andriy and Katya created the iTinder bot for searching for work in the IT field."
+
+func abracadabra(string oldString: String) -> String {
+    
+    var newString = ""
+    let digits = ["zero","one","two","three","four","five","six","seven","eight","nine"]
+    for symbol in oldString {
+        switch symbol {
+        
+        case "a", "e", "i", "o", "u", "y", "A", "E", "I", "O", "U", "Y" :
+            newString += symbol.uppercased()
+            
+        case "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z", "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z" :
+            newString += symbol.lowercased()
+            
+        case "0"..."9" :
+            newString += digits[Int(String(symbol))!]
+            
+        case ",",".",";",":","!","?","-" :
+            newString += " "
+            
+        case " " :
+            newString += " "
+            
+        default : break
+        }
+    }
+    return newString
+}
+
+abracadabra(string: someString)
+
+print("\(someString) after abracasabra function will be \(abracadabra(string: someString)).")
+
