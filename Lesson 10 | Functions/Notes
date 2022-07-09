@@ -1,0 +1,37 @@
+return — розриває функцію і повертає значення.
+
+У func можна встановити дефолтне значення, яке вона приймає
+func calculate(wallet: [Int], type: Int? = nil)
+func someFunc(parameterNoDefault: Int, parameterYesDefault: 12) — якщо не вказувати другий параметр, він буде 12.
+place parameters that have no default value at the beggining of the func parameter list.
+
+У func є зовнішні і внутрішні параметри
+func calculate(inWallet(зовнішній): wallet(внутрішній): [Int])
+
+Можна приймати range
+func calculate(inSequnce range: Int...)
+
+Void — empty tuple
+
+Optional tuple return type (Int, Int)?
+entire tuple could be nil
+
+Func with an implicit return
+any func that u write as just one return line, can omit the return
+func greeting(for person: String) -> String {
+"Hello," + "person" + "!"
+}
+
+func someFunc(argumentLabel parameterName: Int)
+
+func parameters are constants
+if u wanna modify a parameter — define that parameter as an in-out parameter
+funs swapTwoInts(a: inout Int, b: inout Int) {
+let temporaryA = a
+b = a
+a = temporaryA
+}
+
+swapTwoInts(&a, &b)
+
+In-out parameters have an effect outside of the scope of its func body.
