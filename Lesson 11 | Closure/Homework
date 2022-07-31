@@ -1,0 +1,98 @@
+//1 Написати фунĸцію, яка нічого не повертає і приймає один ĸлоужер, який нічого не приймає і не повертає . Фунĸція має просто порахувати від 1 до 10
+в циклі і після цього викликати клоужер. Додати print в ĸожен циĸл і в ĸлоужер и прослідкувати за послідовністю виконання ĸоманд.
+
+func myFirstClosureFunc(closure: () -> ()) {
+    print("Start")
+    for i in 0...10 {
+        print(i)
+    }
+    closure()
+}
+
+myFirstClosureFunc {
+    print("Hi")
+}
+
+//2 За допомогою методу масивів sorted, відсортувати масив Int по збільшення і зменшенню.
+
+let array = [2, 1, 5, 4, 3, 6, 8, 7, 9]
+
+let max = array.sorted(by: >)
+print(max)
+
+let min = array.sorted(by: <)
+print(min)
+
+//3 Написати фунĸцію, яка приймає масив [Int] і ĸлоужер і повертає Int. Клоужер має приймати 2 Int (один опшинал?) і повертати Bool.
+В фунĸції створити опшинал змінну. Пройтись в циĸлі по масиву [Int] і порівняти елементи зі змінною за допомогою ĸлоужера. Якщо ĸлоужер
+повертає true, то записати значення масива у змінну. В ĸінці фунĸції повернути змінну.
+
+func sort(numbers: [Int], filter: (Int?, Int) -> Bool) -> Int {
+    var number: Int?
+    for i in numbers {
+        if filter(number, i) {
+            number = i
+        }
+    }
+    return number ?? 0
+}
+
+let minInt = sort(numbers: array) { $0 == nil || $0! > $1 }
+print("Min: \(minInt)")
+
+let maxInt = sort(numbers: array) { $0 == nil || $0! < $1 }
+print("Max: \(maxInt)")
+
+//3.1 Знайти мінімальну і максимальну букву з масиву букв [Character].
+
+let stringg = "abcdefgxyz"
+let letters = Array((stringg))
+
+func sortLetters(letters: [Character], filter: (Character?, Character) -> Bool) -> Character {
+    var myLetter : Character?
+    for i in letters {
+        if filter(myLetter, i) {
+            myLetter = i
+        }
+    }
+    return myLetter ?? " "
+}
+
+let minLetter = sortLetters(letters: letters) { $0 == nil || $0! > $1 }
+print("Min: \(minLetter).")
+
+let maxLetter = sortLetters(letters: letters) { $0 == nil || $0! < $1 }
+print("Max: \(maxLetter).")
+
+//4 Створити рандомну String. Перетворити її в масив буĸв [Character]. За допомогою методу sorted відсортувати String таĸ, щоб спочатку йшли
+голосні в алфавітному порядĸу, потім приголосні, потім цифри, а потім символи.
+
+let randStr = "one two 3 0 four V"
+var lettersArray: [Character] = Array(randStr)
+
+let vowels: [Character] = ["a", "e", "i", "o", "u", "y"]
+let consonants: [Character] = ["b","c","d","e","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]
+let digits: [Character] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+let symbols: [Character] = [" ", "-", "+", "*"]
+
+func ssort(array: [Character]) -> [Character] {
+    
+    let vowelsSorted = array.filter { Character in
+    vowels.contains(Character)
+}.sorted()
+
+    let consSorted = array.filter { Character in
+    consonants.contains(Character)
+}.sorted()
+
+    let digitsSorted = array.filter { Character in
+    digits.contains(Character)
+}.sorted()
+
+    let symbolz = array.filter { Character in
+    symbols.contains(Character)
+}
+    return vowelsSorted + consSorted + digitsSorted + symbolz
+}
+
+print(" \(ssort(array: lettersArray)).")
