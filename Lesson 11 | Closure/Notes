@@ -1,0 +1,37 @@
+Closure — кусок коду, який ми передаємо у різні функції.
+
+func filterArray(array: [Int], f: (Int) -> Bool) -> [Int] {
+var filtered = [Int]()
+ for i in array {
+  if f(i) {
+  filtered.append(i)
+ } 
+ return filtered
+}
+
+var numbers = [Int]
+
+Вставляємо closure:
+filterArray(numbers, {(i:Int) -> Bool in 
+  return i % 2 == 0
+ })
+ 
+Спрощений варіант:
+filterArray(numbers, { i in
+  return i % 2 == 0 — можна забрати і return, бо наш код займає 1 строку
+})
+
+Ще простіший синтаксис:
+filterArray(numbers, { $0 % 2 == 0 })
+$0 — аргумент під номером 1
+
+Якщо closure знаходиться вкінці, то його можна винести за дужки — trailing closure.
+filterArray(numbers) { $0 % 2 == 0 }
+
+Позначки, які можна використовувати в коді і вони відображаються в пошуку:
+//MARK
+//FIXME
+//TODO
+
+Виділяємо і swift сам фіксить весь синтаксис:
+Command A, CNTRL I 
