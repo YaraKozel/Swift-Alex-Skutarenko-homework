@@ -1,0 +1,96 @@
+//1 Створити enum з шахматними фігурами. Кожна фігура має мати колір та позицію (буква + цифра). Створити декілька фігур з розміщенням на дошці так, 
+щоб чорному корою був мат. Помістити фігури у масив.
+ 
+enum ChessColor: String {
+    case  White, Black
+}
+
+enum ChessLetter: String {
+    case A, B, C, D, E, F, G, H
+}
+
+enum ChessDigit: Int {
+    case one = 1
+    case two = 2
+    case three = 3
+    case four = 4
+    case five = 5
+    case six = 6
+    case seven = 7
+    case eight = 8
+}
+
+enum ChessType: String {
+    case King = "King"
+    case Queen = "Queen"
+    case Bishop = "Bishop"
+    case Knight = "Knight"
+    case Rook = "Rook"
+    case Pawn = "Pawn"
+}
+
+typealias ChessFigure = (ChessType, ChessColor, ChessLetter, ChessDigit)
+
+var blackKing = (ChessColor.Black, ChessType.King, ChessLetter.B, ChessDigit.eight)
+var whiteQueen = (ChessColor.White, ChessType.Queen, ChessLetter.B, ChessDigit.seven)
+var whiteKing = (ChessColor.White, ChessType.King, ChessLetter.C, ChessDigit.six)
+                               
+let figureArray = [blackKing, whiteQueen, whiteKing]
+
+//2 Створити функцію, яка виводить в консоль назву фігури, колір та положення (Raw Value). Роздрукувати всі фігури в масиві. Створити функцію, 
+яка приймає масив фігур і виводить в консоль інформацію про кожну фігуру в ньому.
+
+  let myFigures = [blackKing, whiteQueen, whiteKing]
+
+func myFigure(figure: (color: ChessColor, type: ChessType, letter: ChessLetter, number: ChessDigit)) {
+    print("\(figure.color.rawValue) \(figure.type.rawValue) stands on a \(figure.letter.rawValue)\(figure.number.rawValue) position.")
+}
+
+myFigure(figure: blackKing)
+
+ func allFigures(array:[(color: ChessColor, type: ChessType, letter: ChessLetter, number: ChessDigit)]) {
+     for i in array {
+         let _ = myFigure(figure: i)
+     }
+     print(myFigure)
+ }
+
+allFigures(array: myFigures)
+
+// 3 Використовуючи unicodes, вивести в консоль вашу дошку. Це має бути функція, яка друкує шахматну дошку з фігурами (приймає масив фігур і нічого не повертає). 
+
+let lettersArray : [String] = ["A","B","C","D","E","F","G","H"]
+let numbersArray = [1,2,3,4,5,6,7,8]
+
+func chessBoard(array: [(color: ChessColor, type: ChessType, letterArray: ChessLetter, numberArray: ChessDigit)]) {
+    var chessString = ""
+    for (indexOfNumber, number) in numbersArray.enumerated().reversed() {
+        chessString += String(number)
+        lettersLoop: for (indexOfLetter, letter) in lettersArray.enumerated() {
+        for figure in array {
+            if (figure.letterArray.rawValue == letter) && (figure.numberArray.rawValue == number) {
+                switch (figure.type, figure.color) {
+                case (.King, .White): chessString += " ♔"; continue lettersLoop
+                case (.Queen, .White): chessString += " ♕"; continue lettersLoop
+                case (.Bishop, .White): chessString += " ♗"; continue lettersLoop
+                case (.Knight, .White): chessString += " ♘"; continue lettersLoop
+                case (.Rook, .White): chessString += " ♖"; continue lettersLoop
+                case (.Pawn, .White): chessString += " ♙"; continue lettersLoop
+                case (.King, .Black): chessString += " ♚"; continue lettersLoop
+                case (.Queen, .Black): chessString += " ♛"; continue lettersLoop
+                case (.Bishop, .Black): chessString += " ♝"; continue lettersLoop
+                case (.Knight, .Black): chessString += " ♞"; continue lettersLoop
+                case (.Rook, .Black): chessString += " ♜"; continue lettersLoop
+                case (.Pawn, .Black): chessString += " ♟"; continue lettersLoop
+                }
+            }
+        }
+            chessString += ((indexOfNumber % 2) == (indexOfLetter % 2)) ? "◽️" : "▪️"
+        }
+        print(chessString)
+        chessString = ""
+    }
+}
+
+chessBoard(array: myFigures)
+
