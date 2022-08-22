@@ -1,0 +1,54 @@
+Enumerations — value type
+
+enum Action {
+  case Walk
+  case Run
+  case Stop
+  case Turn
+}
+
+var Actrion = Actrion.Run де Action — тип даних.
+Якщо Swift знає, що наш тип даних Action, то:
+action : Action = .Stop
+
+Можна привʼязати associated value:
+
+enum Action {
+  case Walk(meters: Int)
+  case Run(meters: Int, speed: Int)
+  case Stop
+  case Turn
+}
+
+action = .Walk(meters: 10)
+
+switch Action {
+  case .Stop: print("Stop")
+  case .Walk(let meters): print ("Walk \(meters) meters")
+  default: break
+}
+
+У випадку .Run можемо записати case .Run(let m, let s) у такому ж порядку, як ініціалізація
+
+Задаємо .Turn параметри Left i Right
+enum Direction {
+  case Left
+  case Right
+}
+case Turn(direction: Direction)
+
+Raw value
+enum Direction : String {
+  case Left = "Left"
+  case Right = "Right"
+}
+print(Directrion.Left.rawValue)
+
+enum Beverage : CaseIterable {
+ ase coffe, tea, juice
+} — тип даних, який дозволяє створювати колекцію
+
+let numberOfChoices = Beverage.count
+let allChoices = Beverage.allCases
+кількість кейсів та їх значення
+
