@@ -1,0 +1,115 @@
+//1 Створити структуру студент. Додати властивості: імʼя, прізвище, рік народження, середній бал. Створити декілька екземплярів структури і помістити їх 
+у масив (журнал).
+
+struct Student {
+    var name : String
+    var surname : String
+    var yearOfBirth : Int
+    var mark : Int
+}
+
+var yarynaKava = Student(name: "Yaryna", surname: "Kava", yearOfBirth: 2000, mark: 6)
+var viktorShurapov = Student(name: "Viktor", surname: "Shurapov", yearOfBirth: 1991, mark: 12)
+var margoKoreneva = Student(name: "Margo", surname: "Koreneva", yearOfBirth: 2000, mark: 9)
+var miraTakriti = Student(name: "Mira", surname: "Takriti", yearOfBirth: 1999, mark: 11)
+var svitlanaKava = Student(name: "Svitlana", surname: "Kava", yearOfBirth: 1981, mark: 7)
+
+var allStudent : [Student] = [yarynaKava, viktorShurapov, margoKoreneva, miraTakriti, svitlanaKava]
+
+//2 Написати функцію, яка приймає масив студентів і виводить у консоль інформацію по кожному. Перед виводом додавати порядковий номер.
+
+func classJournal(students: [Student]) {
+    print("My group:")
+    for (i, value) in students.enumerated() {
+        print("\(i + 1). \(value.name) \(value.surname). The year of birth: \(value.yearOfBirth). The avarage makr: \(value.mark)")
+    }
+}
+
+classJournal(students: allStudent)
+
+//3 За допомогою функції sorted() відсортувати середній бал по зменшенню і роздрукувати.
+
+var theBestStudents : [Student] = allStudent.sorted{$0.mark > $1.mark}
+print("\nThe descending order of marks:")
+for (i, y) in theBestStudents.enumerated() {
+    print("\(i + 1). \(y.name) \(y.surname). The mark: \(y.mark)")
+}
+
+// 4 Відсортувати масив по прізвищу за збільшенням. При цьому зробити так, щоб у двох студентів прізвища збігалися, а відрізнялися лише імена. Роздрукувати.
+
+var sortedNamesStudents = allStudent.sorted{ ($0.surname, $0.name) < ($1.surname, $1.name) }
+print("\nYey! I've sortered students with their names and surnames:")
+for (i, y) in sortedNamesStudents.enumerated() {
+    print("\(i + 1). \(y.name) \(y.surname).")
+}
+
+//5 Створити змінну і привласнити їй наш масив. Змінити у ній дані всіх студентів і роздрукувати два масиви. Чи помінялись вони? Чому?
+
+var myNewStudents = allStudent
+myNewStudents[0].name = "Yara"
+myNewStudents[1].name = "Vitya"
+myNewStudents[2].name = "MAR"
+myNewStudents[3].mark = 0
+myNewStudents[4].yearOfBirth = 2005
+
+classJournal(students: allStudent)
+classJournal(students: myNewStudents)
+
+// All the same, but using classes
+
+print("\n")
+
+class StudentClass {
+    var name : String
+    var surname : String
+    var yearOfBirth : Int
+    var mark : Int
+    
+    init(name: String, surname: String, yearofBirth: Int, mark: Int) {
+        self.name = name
+        self.surname = surname
+        self.yearOfBirth = yearofBirth
+        self.mark = mark
+    }
+}
+
+var yaraKava = StudentClass(name: "Yara", surname: "Kava", yearofBirth: 2000, mark: 10)
+var vityaShurapov = StudentClass(name: "Vitya", surname: "Shurapov", yearofBirth: 1991, mark: 11)
+var marKoreneva = StudentClass(name: "MAR", surname: "Koreneva", yearofBirth: 2000, mark: 12)
+var miraTakritiSad = StudentClass(name: "Mira", surname: "Takriti", yearofBirth: 1999, mark: 7)
+var svetaKava = StudentClass(name: "Sveta", surname: "Kava", yearofBirth: 1981, mark: 9)
+
+var mySrudentClass : [StudentClass] = [yaraKava, vityaShurapov, marKoreneva, miraTakritiSad, svetaKava]
+
+func myClass(myClass: [StudentClass]) {
+    print("My Class:")
+    for (i, value) in myClass.enumerated() {
+        print("\(i + 1). \(value.name) \(value.surname). The year of birth: \(value.yearOfBirth). The avarage mark: \(value.mark)")
+    }
+}
+
+myClass(myClass: mySrudentClass)
+
+var mySortedClass = mySrudentClass.sorted{$0.mark > $1.mark}
+print("\nThe descending order of marks:")
+for (i, y) in mySortedClass.enumerated() {
+    print("\(i + 1). \(y.name) \(y.surname). The mark: \(y.mark)")
+}
+
+var mySuperSortedClass = mySrudentClass.sorted{ ($0.surname, $0.name) < ($1.surname, $1.name) }
+print("\nYey! I've sortered students with their names and surnames:")
+for (i, y) in mySuperSortedClass.enumerated() {
+    print("\(i + 1). \(y.name) \(y.surname).")
+}
+
+var mySecondClass = mySrudentClass
+mySecondClass[0].name = "Yaryna"
+mySecondClass[1].name = "Viktor"
+mySecondClass[2].name = "Margarita"
+mySecondClass[3].yearOfBirth = 2020
+mySecondClass[4].mark = 0
+
+myClass(myClass: mySrudentClass)
+myClass(myClass: mySecondClass)
+
+// stuctures - value type, classes - referenct type
