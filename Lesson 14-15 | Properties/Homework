@@ -1,0 +1,229 @@
+//14
+
+//1 Повторити код Олексія по памʼяті
+
+struct Student {
+  
+    var firstName : String {
+        willSet {
+            print("will set " + newValue + " instead of " + firstName)
+        }
+        didSet {
+            firstName = firstName.capitalized
+            print("did set " + firstName + " instead of " + oldValue)
+        }
+    }
+    
+    var lastName : String {
+        didSet {
+            lastName = lastName.capitalized
+        }
+    }
+   
+    var fullName : String {
+        get {
+            return firstName + " " + lastName
+        }
+        set {
+            print("fullName wants to be set to " + newValue )
+            let words = newValue.components(separatedBy: " ")
+            
+            if words.count > 0 {
+                firstName = words[0]
+            }
+            if words.count > 1 {
+                lastName = words[1]
+            }
+            
+        }
+    }
+}
+
+var student = Student(firstName: "Yara", lastName: "Kozel")
+
+student.firstName = "katya"
+student.fullName = "YaRA KavA"
+
+//2 Для цього ж студента додати нові properties: дата народження, вік, роки навчання.
+
+struct DateOfBirth {
+    var year : Int
+    var month : Int
+    var day : Int
+    var currentYear = 2022
+    
+    var theAge : Int {
+        return currentYear - year
+        }
+    var yearsOfStudy : Int {
+        return (theAge - 6) < 0 ? 0 : (theAge - 6)
+    }
+}
+
+var yaraYears = DateOfBirth(year: 2000, month: 3, day: 31)
+yaraYears.theAge
+yaraYears.yearsOfStudy
+
+//3 Створити структуру відрізок, у якої є два properties — точка А і В, які в свою чергу теж структура. Відрізок має computed properties: довжина відрізка,
+midPoint(середина відрізка, якщо ми її міняємо — міняються точки А і В), якщо міняємо довжину відрізку, то точка А стабільна, рухається лише точка В.
+
+struct Point {
+    var x : Double
+    var y : Double
+}
+
+struct Line {
+    
+    var pointA : Point
+    var pointB : Point
+    
+    var midPoint : Point {
+        get {
+            let midX = (pointA.x + pointB.x) / 2
+            let midY = (pointA.y + pointB.y) / 2
+            return Point(x: midX, y: midY)
+        }
+        
+        set {
+            print("Set \(newValue) instead of \(midPoint)")
+            let oldMiddleOfLine = midPoint
+            print("pointA was \(pointA) and pointB was \(pointB)")
+            pointA.x = pointA.x + (newValue.x-oldMiddleOfLine.x)
+            pointA.y = pointA.y + (newValue.y-oldMiddleOfLine.y)
+            pointB.x = pointB.x + (newValue.x-oldMiddleOfLine.x)
+            pointB.y = pointB.y + (newValue.y-oldMiddleOfLine.y)
+            print("Now pointA is \(pointA) and pointB is \(pointB)")
+        }
+    }
+    
+    var lineLength : Double {
+        get {
+            return sqrt(pow(pointB.x - pointA.x, 2) + pow(pointB.y - pointA.y, 2))
+        }
+        set {
+            print("Set \(newValue) instead of \(lineLength)")
+            let oldlineLength = lineLength
+            print("pointB was \(pointB)")
+            pointB.x = pointA.x + (newValue * (pointB.x - pointA.x)) / oldlineLength
+            pointB.y = pointA.y + (newValue * (pointB.y - pointA.y)) / oldlineLength
+            print("Now pointB is \(pointB)")
+            
+        }
+    }
+}
+
+var myLine = Line(pointA: Point(x: 10, y: 0), pointB: Point(x: 0, y: 16))
+myLine.lineLength
+myLine.lineLength = 20.3
+myLine.midPoint
+myLine.midPoint = Point(x: 6, y: 9)
+
+
+//15
+
+//1 Створити sruct FileDescription, яка містить: шлях до файлу, шлях до папки, імʼя файлу, максимальний розмір файлу, тип файлу, місткість файлу.
+
+enum FileType : String {
+    case open = "Open"
+    case hidden = "Hidden"
+}
+
+struct FileDescription {
+    
+    var name : String
+    
+    var folderPath : String
+    var filePath : String {folderPath + "/" + name}
+    static var maxSize : Int = 256
+    var size : Int {
+        didSet {size > FileDescription.maxSize ? oldValue : size}
+    }
+    
+    var type : FileType
+    
+   lazy var content = "Some random string"
+}
+
+var myData = FileDescription(name: "SwiftUA", folderPath: "Playground", size: 64, type: .open)
+myData.name
+myData.folderPath
+myData.content
+myData.filePath
+myData.size
+myData.type
+FileDescription.maxSize
+
+//2 Створити enum, який буде містити певну кольорову гаму. Тип Int і як Raw Value містить відповідне цифрове значення кольору. Додати 3 type properties: 
+кількість кольорів у гамі, початковий колір та кінцевий колір.
+
+enum Colors : Int {
+    
+    case red = 0xFF0000
+    case green = 0x00FF00
+    case blue = 0x0000FF
+    
+    static var colorsCount = 3
+    static var startColor = Colors.red
+    static var endColor = Colors.blue
+}
+
+Colors.colorsCount
+Colors.startColor
+Colors.endColor
+
+//3 Створити клас людини, який містить: імʼя, прізвище, вік, зріст і вагу. Додати декілька properties: мінімальний і максимальний вік кожного екземпляра класу, 
+мінімальну і максимальну довжину імені та прізвища, мінімально можливий зріст та вагу, і property, яке буде містити кількість всіх екземплярів даного класу.
+
+class Human {
+    
+    static var allPeople = 0
+   
+    static var maxName = 10
+    static var maxSurname = 10.
+    static var minName = 2
+    static var minSurname = 2
+    
+    var name : String
+    var surname : String {
+        didSet {
+            var fullName = surname + " " + name
+            if fullName.count > (Human.maxName + maxSurname) & fullName.count < (Human.minName + minSurname){
+                fullName = oldValue
+            }
+        }
+    }
+    
+   
+    static var minAge = 0
+    static var maxAge = 120
+    
+    var age : Int {
+        didSet {
+            if age > Human.maxAge && age < Human.minAge {
+                age = oldValue
+            }
+        }
+    }
+   
+    static var minHeight = 50
+    var height : Int {
+        didSet {height < Human.minHeight ? oldValue : height}
+    }
+    
+    static var minWeight = 6
+    var weight : Int {
+        didSet {weight < Human.minWeight ? oldValue : weight}
+    }
+    
+    init(name: String, surname: String, age: Int, height: Int, weight: Int) {
+        self.name = name
+        self.surname = surname
+        self.age = age
+        self.height = height
+        self.weight = weight
+        
+        Human.allPeople += 1
+    }
+}
+
+var iAm = Human(name: "Yaryna", surname: "Kozel", age: 22, height: 170, weight: 55)
