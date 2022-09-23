@@ -187,8 +187,8 @@ class Human {
     var surname : String {
         didSet {
             var fullName = surname + " " + name
-            if fullName.count > (Human.maxName + maxSurname) & fullName.count < (Human.minName + minSurname){
-                fullName = oldValue
+            if fullName.count > (Human.maxName + Human.maxSurname) && fullName.count < (Human.minName + Human.minSurname){
+                    fullName = oldValue
             }
         }
     }
