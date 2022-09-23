@@ -1,0 +1,87 @@
+Stored properties — властивості екземплярів зберігати дані
+Computed properties — властивості, які вичисляють дані
+
+struct Student {
+var firstName = Alex { - stored property
+willSet(newFirstValue) {
+print("Will set" + newFirstValue + "instead of" + firstValue) - computed property
+}
+didSet(oldFirstValue) {
+print("Did set" + firstValue + "instead of" + oldFirstValue) 
+   }
+}
+
+Student.firstName = "Bob"
+
+в консолі ми бачимо:
+will set Bob instead of Alex
+did set Bob instead of Alex
+бачимо що було і що маємо
+
+.capitalixedString - переводить строку у lover case, крім першої літери
+
+stored property - зберігає дані у самій property
+за допомогою didSet ми його можемо одразу відредагувати
+
+Computed properties
+найпростіший варіант computed properties — getter
+
+var fullName: String {
+return firstName + lastName - computed property
+}
+
+get/set ніколи нічого не зберігають
+
+.сomponentsSeparatedByString(" ") - розбиває значення на строки, індикатор — пробіл.
+
+struct FixedLengthRange {
+var firstValue : Int
+let length : Int
+}
+
+let rangeOfFourItems = FixedLengthRange (firstValue: 0, length: 4)
+rangeOfFourItems.firstValue = 6 - eror (check var and let)
+але це можливо з class, так як це reference type
+
+lazy properties - only var
+lazy properties - initial value isn't calculated until the first time it's used
+за замовченням - nil
+загружається після того, як викликають один раз
+
+Type properties
+
+static let - property для всього типу
+
+struct Cat {
+var name : String
+static let maxAge = 20 - для всього виду
+static var totalCats = 0
+var age : Int {
+didSet : Int {
+if age > Cat.maxAge {
+age = oldValue
+   }
+ }
+init(name: String, age: Int) {
+self.name = name
+self.age = age
+Cat.totals += 1 - щоб дізнатись кількість екземлярів типу Cats
+}
+
+stored property - можуть мати типи, а екземпляр лише class. 
+computed properties - для всіх типів і екземплярів
+
+DRY - don't repit yourself
+
+global var/let - з великої букви
+
+let MaxNameLength = 20
+
+якщо нам треба мати property для екземпляра, то це мають бути property екземпляра
+якщо типу — властивості типу - global var/let
+global var/let are defined ourside of any func, method, closhure..
+local - within
+
+Computed properties - only var
+
+u define type properties with the static keyword.
