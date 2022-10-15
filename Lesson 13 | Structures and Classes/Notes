@@ -1,0 +1,54 @@
+class Student {
+var name = "No name"
+var age = 20
+}
+
+let student = Student() - екземпляр класу
+
+student.name = "Alex" - можна міняти дані, це параметри класу
+
+class Student {
+var name : String
+var age : Int
+}
+
+Треба заповнити конструктур, якщо він не opt (String? or Int?)
+
+найпростіший конструктор — функція init()
+
+init() {
+....
+}
+
+init (_name: String, _age: Int) {
+name = _name
+age = _age
+}
+
+self - вказує на даний екземпляр
+self.name
+self.age
+
+структура — конструктор створюється автоматом
+
+щоб змінити клас треба: property var, клас може бути let
+щоб змінити structure: property var, structure var
+
+structure - value type
+class - teference type
+
+Можна створювати func з одинаковими назвами, параметрами, але різними типами, які вони приймають.
+
+structure - невелика кількість даних
+class - для масштабних робіт
+
+types — UpperCamelCase
+properties and methods - lowerCamelCase
+
+=== identical to some instunce of class or structure
+!== not identical to
+
+if oneClass === anotherClass 
+print ("yes")
+}
+
