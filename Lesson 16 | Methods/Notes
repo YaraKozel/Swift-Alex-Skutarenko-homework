@@ -1,0 +1,55 @@
+зліва - зовнішні параметри
+справа - внутрішні
+
+#point - параметр і зовнішній і внутрішній
+
+methods 
+перший параметр - завжди локальний, щоб перше значення було без параметра
+наступні параметри - зовнішні, не треба #
+
+Якщо параметр у методі і функції одинакові, то:
+
+struct Point {
+var x : Int
+var y : Int
+
+func moveByx(x: Int, andY: Int) {
+self.x += x
+}
+
+щоб func міняла properties у struct, пишемо mutating struct
+
+якщо у нас екземпляр let, до нього не можна застосовувати метод mutating
+
+для value type ми можемо self 
+
+enum Color {
+case White
+case Black
+
+
+mutating func invert -> Color {
+self = self == White ? Black : White 
+return self
+}
+
+func print() {
+if self = white {
+print("White")
+} else {
+print("Black")
+    }
+  }
+}
+
+в клас немає mutating + on a constant of a structure type too
+
+static func - метод типу self - завжди вказує на того, хто цей метод викликав
+
+Methods - funcs, that are assosiated with a particular type
+
+Instance methods - func, that belong to instances of a particular class, structure or enumeration.
+
+u call instance methods with the same dot syntax as properties
+
+use self if a parameter name for an instance method has the same name as a property of that instance.
