@@ -1,0 +1,34 @@
+Subscripts — метод по типу computed properties.
+
+structure family {
+   var father = "Father"
+   var mother = "Mother"
+   var kids = ["Kid1", "Kid2", "Kid3"]
+
+var count : Int {
+   return 2 + kids.count
+}
+
+subscript(index: Int) -> String? {
+   get {
+   switch(index) {
+   case 0: return father
+   case 1: return mother
+   case 2..<(2+kids.count): return kids[index - 2]
+   default: return nil
+   }
+  }
+}
+
+Subscript — shortcut for accecing the member element in a collection.
+
+Dictionary type subscript
+var numberOfLegs = ["Spider" : 8, "Ant" : 6, "Cat" : 4]
+numberOfLegs["Bird"] = 2
+
+Dictionary type uses only ?, because not every key has a value
+
+Subscripts can take any number of imput parameters of any type.
+! Can't use in-out parameters
+
+type subscripts — calls on the type itself (not instance)
