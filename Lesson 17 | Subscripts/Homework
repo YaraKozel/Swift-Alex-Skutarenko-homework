@@ -1,0 +1,91 @@
+1// Створити тип шахматна дошка. Додати сабскрипт, який видає колір клітинки за координатами. Якщо користувач помилився — видаємо ніл.
+
+var adress = ["a" : 1, "b" : 2, "c" : 3, "d" : 4, "e" : 5, "f" : 6, "g" : 7, "h" : 8]
+
+struct ChessBoard {
+    var row = 1
+    var column = "a"
+    
+    subscript(row: Int, column: String) -> String {
+        var maxRow = 9
+        var maxColumn = 9
+        var columnNum = adress[column] ?? 0
+        
+        if (row > 0 && row < maxRow) && (columnNum > 0 && columnNum < maxColumn) {
+            return ((row + columnNum) % 2) == 0 ? "Black" : "White"
+        } else {
+            return "This cell doesn't exists"
+        }
+    }
+}
+
+let myCell = ChessBoard()
+myCell[8, "h"]
+
+//2 Створити тип — поле бою для гри «Хрестики-нолики». Одна клітинка — одне значення (хрестик, нулик, пусто). 
+Додати сабскрипт, який встановлює значення клітинки за колонкою та рядком. Якщо таких не існує — код не падає.
+Не можна встановити хрестик чи нолик там, де вже щось є. 
+
+enum SpaceType : String {
+    case field = "⬜️"
+    case cross = "❌"
+    case zero = "⭕️"
+}
+
+class Xoxo {
+    var size : Int
+    var field = [[SpaceType]]()
+    
+    init(size: Int) {
+        self.size = size
+        create()
+    }
+    
+    func create() {
+        print("Let's start new Xoxo Game!")
+        field = [[SpaceType]]()
+        for _ in 0..<size {
+            let line = Array(repeating: SpaceType.field, count: size)
+            field.append(line)
+        }
+    }
+    
+    func show() {
+        for line in field {
+            var lineString = ""
+            for character in line {
+                lineString += String(character.rawValue)
+            }
+            print(lineString)
+        }
+    }
+    
+    subscript(x: Int, y: Int) -> SpaceType {
+        get {
+            if x < 0 || x >= size || y < 0 || y >= size {
+                return.field
+            }
+            return field[x][y]
+        }
+        set {
+            print("\(newValue.rawValue) - (\(x), \(y))")
+            if !(x < 0 || x >= size || y < 0 || y >= size || newValue == .field || field[x][y] != .field) {
+                field[x][y] = newValue
+            }
+        }
+    }
+}
+
+let firstGame = Xoxo(size: 3)
+firstGame.show()
+firstGame[2, 2] = .cross
+firstGame.show()
+firstGame[1, 1] = .zero
+firstGame.show()
+firstGame[1, 2] = .cross
+firstGame.show()
+firstGame[2, 0] = .zero
+firstGame.show()
+firstGame[0, 2] = .cross
+firstGame.show()
+print("The cross has won!")
