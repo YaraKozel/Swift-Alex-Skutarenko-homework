@@ -1,0 +1,155 @@
+//1 Cтворити базовий клас Artist, який містить: імʼя, прізвище і метод "Виступ". У кодного артиста має бути свій виступ, а худовжник нехай ставить щось інше —
+міняє ім'я на своє сценічне. Коли викликаємо метод виступ, показати у консолі ім'я, прізвище і сам виступ. Покласти всіх в один масив, пройтись по кожному і 
+викликати метод.
+
+class Artist {
+    var name : String = ""
+    var surname : String = ""
+    var fullName : String { return name + " " + surname }
+    
+    func performance() -> String {
+       return "\(fullName) is perfoming 💥"
+    }
+    
+    init(name: String, surname: String) {
+            self.name = name
+            self.surname = surname
+        }
+}
+
+class Dancer : Artist {
+    override func performance() -> String {
+        return " \(name) \(surname) is dancing 💃"
+    }
+}
+
+class Singer : Artist {
+    override func performance() -> String {
+        return " \(name) \(surname) is singing 🎤"
+    }
+}
+
+class Actor : Artist {
+    override func performance() -> String {
+        return " \(name) \(surname) is playing a role 🎭"
+    }
+}
+
+class Painter : Artist {
+    override var fullName: String { return "Pee Pee Pou Pou"}
+    override func performance() -> String {
+        return " My name is Painter and I paint"
+    }
+}
+
+var dancer = Dancer(name: "Tatiana", surname: "Ninja")
+var singer = Singer(name: "Mykola", surname: "Shchur")
+var actor = Actor(name: "Djenifer", surname: "Eniston")
+var painter = Painter(name: "Van", surname: "Gogh")
+
+var performance = [dancer, singer, actor, painter]
+
+for i in performance { print(i.performance()) }
+
+//2 Створити клас транспорт і додати 3 computed properties: швидкість, місткість та ціна. Створити декілька дочірніх класів і переоприділити у них properties. 
+У computed properties кожного класу написати свої значення + зробити метод, який розрахує час, вартість і кількість похздок, щоб перевезти х кількість людей
+на дистанцію у.
+
+class Transport {
+    var type : String { return "Transport: " }
+    var speed : Int { return 0 }
+    var capacity : Int { return 0 }
+    var coast : Int { return 0 }
+        
+    func calculate(persons: Int, distance: Int) -> (count: Int, time: Double, money: Int) {
+        let count = (persons % capacity) == 0 ? persons/capacity : persons/capacity + 1
+        let time = Double(count) * Double(distance)/Double(speed)
+        let money = count * self.coast
+        return (count,time,money)
+    }
+}
+
+class Plane : Transport {
+    override var type: String { super.type + "Plane" }
+    override var speed: Int { return 1000 }
+    override var capacity: Int { return 100 }
+    override var coast: Int { return 100000 }
+}
+
+class Ship : Transport {
+    override var type: String { super.type + "Ship" }
+    override var speed: Int { return 80 }
+    override var capacity: Int { return 300 }
+    override var coast: Int { return 200000 }
+}
+
+class Helicopter : Transport {
+    override var type: String { super.type + "Helicopter" }
+    override var speed: Int { return 160 }
+    override var capacity: Int { return 6 }
+    override var coast: Int { return 10000 }
+}
+
+class Car : Transport {
+    override var type: String { super.type + "Car" }
+    override var speed: Int { return 100 }
+    override var capacity: Int { return 5 }
+    override var coast: Int { return 5000 }
+}
+
+let plane = Plane()
+let ship = Ship()
+let helicopter = Helicopter()
+let car = Car()
+
+var arrOfTransport: [Transport] = [plane, ship, helicopter, car]
+
+func checkTransport(arr: [Transport], people: Int, distance: Int) {
+    print("search for a suitable vehicle to transport \(people) people on \(distance) km")
+    for vehicle in arrOfTransport {
+        print("\n \(vehicle.type)")
+        let (count, time, money) = vehicle.calculate(persons: people, distance: distance)
+        print(" Number of shipments: \(count)")
+        print(" Time for all shipments: \(time) hours")
+        print(" Coast of all shipments: \(money) eur")
+    }
+}
+
+checkTransport(arr: arrOfTransport, people: 100, distance: 500)
+
+
+//3 Є 5 класів — люди, крокодили, мавпи, собаки і жирафи. Створити батьківські класи. Створити кілька обʼєктів кожного класу. Помістити їх у масив і порахувати
+кількість. Порахувати скільки тут чотириногих.
+
+class Beings {}
+class Quadruped : Beings {}
+class Animals : Quadruped {}
+class Mammals : Animals {}
+class HomoSapiens : Beings {}
+class Reptiles : Animals {}
+
+class Humans : HomoSapiens {}
+
+class Crocodiles : Reptiles {}
+    
+class Monkeys : Mammals {}
+    
+class Dogs : Mammals {}
+
+class Giraffes : Mammals {}
+
+var person = Humans()
+var crocodile1 = Crocodiles()
+var crocodile2 = Crocodiles()
+var monkey1 = Monkeys()
+var monkey2 = Monkeys()
+var monkey3 = Monkeys()
+var dog1 = Dogs()
+var dog2 = Dogs()
+var dog3 = Dogs()
+var dog4 = Dogs()
+var giraffe = Giraffes()
+
+var allBeings = [person, crocodile1, crocodile2, monkey1, monkey2, monkey3, dog1, dog2, dog3, dog4, giraffe]
+print("\nThe number of all beings is \(allBeings.count)")
+print("4 legs have \(allBeings.filter{ $0 is Quadruped }.count) animals")
