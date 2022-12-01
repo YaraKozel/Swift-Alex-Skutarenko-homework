@@ -1,0 +1,37 @@
+A class can inherit methods, properties, and other characteristics from another class. When one class inherits from another, the inheriting class is known 
+as a subclass, and the class it inherits from is known as its superclass.
+
+Subclassing is the act of basing a new class on an existing class. The subclass inherits characteristics from the existing class, which you can then refine.
+
+class Vehicle {
+   var currentSpeed = 0.0
+   var description: String {
+    return "traveling at \(currentSpeed) miles per hour"
+  }
+}
+
+class Bicycle: Vehicle {
+    var hasBasket = false
+}
+
+By default, any new Bicycle instance you create will not have a basket. You can set the hasBasket property to true for a particular Bicycle instance after 
+that instance is created.
+
+let bicycle = Bicycle()
+bicycle.hasBasket = true
+
+Subclasses can themselves be subclassed.
+class Tandem: Bicycle {
+    var currentNumberOfPassengers = 0
+}
+
+Tandem inherits all of the properties and methods from Bicycle, which in turn inherits all of the properties and methods from Vehicle.
+
+A subclass can provide its own custom implementation of an instance method, type method, instance property, type property, or subscript that it would 
+otherwise inherit from a superclass. This is known as overriding.
+
+You must always state both the name and the type of the property you are overriding, to enable the compiler to check that your override matches a 
+superclass property with the same name and type.
+
+You can prevent a method, property, or subscript from being overridden by marking it as final.
+
