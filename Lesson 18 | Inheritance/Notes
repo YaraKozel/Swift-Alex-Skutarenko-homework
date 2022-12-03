@@ -30,8 +30,34 @@ Tandem inherits all of the properties and methods from Bicycle, which in turn in
 A subclass can provide its own custom implementation of an instance method, type method, instance property, type property, or subscript that it would 
 otherwise inherit from a superclass. This is known as overriding.
 
+class Human {
+var fullName : String = ""
+
+  func sayHello() -> String {
+  return "Hello"
+  }
+}
+
+class Student : Human {
+  override func sayHello() -> String {
+  return "sup"
+  }
+}
+
+або:
+
+override func sayHello() -> String {
+  return super.sayHello() + " my friend"
+  }
+}
+
 You must always state both the name and the type of the property you are overriding, to enable the compiler to check that your override matches a 
 superclass property with the same name and type.
 
 You can prevent a method, property, or subscript from being overridden by marking it as final.
 
+final func, final var or final class
+
+Inheritance застосовується лише у класах!
+
+Переоприділити можна і getter, і setter. А коли ми переоприділяємо property, то можео встановити їй власні getter i setter.
