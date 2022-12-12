@@ -1,0 +1,152 @@
+class Student1 {
+    var firstName : String
+    var lastName : String
+    var fullName : String {
+        return fullName + " " + lastName
+    }
+    
+    init() {
+        self.firstName = ""
+        self.lastName = ""
+    }
+}
+
+class Student2 {
+    var firstName = ""
+    var lastName = ""
+}
+
+class Student3 {
+    var firstName : String
+    var lastName : String
+    
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+}
+
+class Student4 {
+    var middleName : String?
+}
+
+class Student5 {
+    let maxAge : Int
+    
+    init() {
+        maxAge = 100
+    }
+}
+
+// ми не зможемо потім в інстансах змінити maxAge
+
+class Student6 : Student5 {
+    override init() {
+        //super.maxAge = 50
+    }
+}
+
+// ми не можемо змінити константу від батьківського класу
+
+let studen1 = Student1()
+let student2 = Student2()
+let student3 = Student3(firstName: "A", lastName: "B")
+
+/// designated inicialization — init
+
+class Human {
+    var weight : Int
+    var age : Int
+    
+    func test() {}
+    
+    init(weight: Int, age: Int) {
+        self.weight = weight
+        self.age = age
+    }
+    
+    convenience init(age: Int) {
+        self.init(weight: 0, age: age)
+    } // convenience constructor
+    
+    convenience init(weight: Int) {
+        self.init(weight: weight, age: 0)
+    }
+    
+    convenience init() {
+        self.init(weight: 0)
+    }
+}
+
+let h1 = Human(weight: 50, age: 40)
+let h2 = Human(age: 33)
+
+class Student : Human {
+    var firstName : String
+    var lastName : String
+    
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        super.init(weight: 0, age: 0)
+    }
+    
+    convenience init(firstName: String) {
+        self.init(firstName: firstName, lastName: "")
+    }
+}
+
+let student = Student(firstName: "a")
+
+Мета ініціалізації — встановити в кожному property певне value.
+
+class Student {
+var middleName : String?
+}
+
+Optional — можна не ініціалізувати.
+
+В дочірніх класах ми не можемо override константи (let) батьківських properties.
+
+Convenience - викликають лише параметри свого класу.
+Convenience мають закінчувати designated constructors.
+
+Для унаслідування:
+designated ініціалізатор викликає тільки designated ініціалізатора.
+
+Спочатку ініціюємо свої property, а потім — super класу.
+
+Designated — відповідають за установку всіх properties дочірнього класу і батьківського. 
+
+Convenient — викликають одне одного, але вкінці все ж викликають designated.
+
+Initialization - process of preparing an instance of a class, structure or enumeration for use.
+
+initializers in its simplest role: 
+init() {
+///
+}
+
+Custom imitializer
+struct Celsius {
+var temperatureInCelsius {
+var temperatureInCelsius : Double 
+init(fromFanrenheit fanrenheit: Double) {
+temperatureInCelsius = (fanrenheit - 32.0)
+}
+
+if u dont want to use an argument label for an initializer parameter, write an underscore (_)
+
+Swift provides a default initializer for any structure ar class that provides default values for all of its properties. 
+
+class ShoppingListItem {
+var name : String?
+var quantity = 1
+var purchased = false 
+}
+
+if u define a custom initializer u cant (for a structure) have access to the memberwise initializer.
+
+Every class must have at least 1 designated initializer.
+
+Designated initializers must always delegate UP, convenience — ACROSS.
