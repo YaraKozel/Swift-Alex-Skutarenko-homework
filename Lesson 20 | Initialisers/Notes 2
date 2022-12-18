@@ -1,0 +1,127 @@
+class Human {
+    var weight : Int
+    var age : Int
+    
+    func test() {}
+    
+    init(weight: Int, age: Int) {
+        self.weight = weight
+        self.age = age
+    }
+    
+    convenience init(age: Int) {
+        self.init(weight: 0, age: age)
+    } // convenience constructor
+    
+    convenience init(weight: Int) {
+        self.init(weight: weight, age: 0)
+    }
+    
+    convenience init() {
+        self.init(weight: 0)
+    }
+}
+
+class Student : Human {
+    var firstName : String
+    var lastName : String
+    
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+        super.init(weight: 0, age: 0)
+    }
+    
+    convenience init(firstName: String) {
+        self.init(firstName: firstName, lastName: "")
+    }
+    
+    override convenience init(weight: Int, age: Int) {
+        self.init(firstName: "")
+        self.weight = weight
+        self.age = age
+    }
+}
+
+class Doctor : Student {
+    
+    var fieldOfStudy : String = ""
+    
+    init(fieldOfStudy: String) {
+        self.fieldOfStudy = fieldOfStudy
+        super.init(firstName: "Doctor", lastName: "House")
+    }
+    
+    override init(firstName: String, lastName: String) {
+        self.fieldOfStudy = "Health"
+        super.init(firstName: firstName, lastName: lastName)
+    }
+    /*
+    convenience init(fieldOfStudy) {
+        self.init(firstName: "Doctor", lastName: "House")
+        self.fieldOfStudy = fieldOfStudy
+    }
+     */
+}
+
+let d1 = Doctor(firstName: "Yara")
+let s1 = Student()
+
+Класи переймають методи ініціалізації батьків лише за певних умов.
+
+1. Якщо в дочірньому класі немає ініціалізаторів, ми унаслідуємо всі convenience i designated iniitializers.
+Convenience не викликають super, тільки self.init
+
+2. Щоб не втрачати ініціалізатори, можна зробити convenience initializer (не designated).
+
+3. Якщо ми хочемо свій designated, тоді ми втрачаємо всі initializers. Якщо ми хочемо їх повернути — нам треба їх override.
+
+Якщо нам треба всі convience методи — переоприділяємо, якщо не треба — ні.
+
+Після того, як ми все унаслідували — робимо свої convenience.
+
+U write a failable initializer by placing a ? after the init (init?)
+
+U can't define a failable and nonfailable initializers with the same parameter type and name.
+
+It creates an opyional value.
+
+struct Animal {
+let species : String 
+iinit? (species: String) {
+if species.isEmpty { return nil }
+self.species = species
+   }
+}
+
+enum TemperatureUnit {
+case kelvin, celsius, fahrenheit
+init? (symbol: Character) {
+switch symbol {
+case "K":
+self = .Kelvin
+case "C" :
+self = .celsius
+case "F"
+self = .fahrenheit 
+default: return nil 
+   }
+}
+
+U can override a superclass failable initialixer with a subclass nonfailable initializer.
+
+U can define an implicitly unwrapped optional instance of the appropriate type (init!)
+
+U can delegate init! to init? and reverse.
+U can override init! to Init? and reverse.
+
+Write the required modifier before the definition of a class initializer to indicate the MUST initialization.
+
+class SomeStructure {
+required init() {
+   ///
+   }
+}
+
+U don't need an override when u override a required initializer.
+
